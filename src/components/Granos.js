@@ -8,6 +8,10 @@ function Granos(props) {
 
     const [conversorEngaged, setConversorEngaged]= useState(false)
 
+  const volumenOriginal= granos.map( grano=>{return  grano.originalBatchSize });
+  const nuevoVolumen =granos.map( grano=>{return  grano.newBatchSize })
+  const coeficienteConversionVolumen= nuevoVolumen/volumenOriginal
+
 
  function elegirUnidades(event) {
     const unidadOriginal= event.target.name
@@ -42,9 +46,12 @@ function Granos(props) {
 
     <h1>Titulo:  {granos.map( grano=>{return  grano.titulo })}</h1>
 
-     <h1>Original batch size:  {granos.map( grano=>{return  grano.originalBatchSize })}</h1>
 
-     <h1>Batch size:  {granos.map( grano=>{return  grano.newBatchSize })}</h1>
+
+
+     <h1>Original batch size:{volumenOriginal}  </h1>
+
+     <h1>Batch size:  {nuevoVolumen}</h1>
     
   
 <h2>Granos</h2>

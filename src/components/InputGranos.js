@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 
 function InputGranos(props) {
 
-    const [granoIngresado, setGranoIngresado]= useState({titulo:"",nombreGrano:"", cantidadGrano:0, nombreLupulo:"",cantidadLupulo:0, originalBatchSize:0, newBatchSize:0})
+    const [granoIngresado, setGranoIngresado]= useState({titulo:"",nombreGrano:"", cantidadGrano:0, nombreLupulo:"",cantidadLupulo:0, originalBatchSize:Number, newBatchSize:Number})
 
   const[hayTitulo,setHayTitulo]=useState(false)
   const[hayVolumen,setHayVolumen]=useState(false)
-  const[batchSizeInputStyle, setBatchSizeInputStyle]= useState({display:"block"})
-   
-
+  const[batchSizeInputStyle, setBatchSizeInputStyle]= useState({display:"none"})
+  
+ 
 function handleChange(event) {
     const value = event.target.value
     const name = event.target.name
@@ -23,15 +23,19 @@ function submitear(event) {
   props.newGrain(granoIngresado)
 
     event.preventDefault();
+    
    
-      setGranoIngresado({titulo:"",nombreGrano:"", cantidadGrano:0,nombreLupulo:"",cantidadLupulo:0, originalBatchSize:0, newBatchSize:0})
+      setGranoIngresado({titulo:"",nombreGrano:"", cantidadGrano:0,nombreLupulo:"",cantidadLupulo:0})
       if (granoIngresado.titulo !==""){setHayTitulo(true)}
      if(granoIngresado.originalBatchSize !==0){setHayVolumen(true)}
-       if(granoIngresado.newBatchSize !==0){setBatchSizeInputStyle({display:"none"})}  
+       if(granoIngresado.newBatchSize !==0){setBatchSizeInputStyle({display:"block"})}  
+       
+      
 }
 
   return (
     <div > 
+    
      <form  >
       {hayTitulo ? null : <><label  for="titulo">Titulo:</label>
    <input value={granoIngresado.titulo} name="titulo" type="text" onChange={handleChange}/> </>}
