@@ -3,14 +3,24 @@ import React, { useState } from 'react';
 
 function Granos(props) {
     const granos = props.allGrains
+    const volumenes= props.volumenes
+    console.log(volumenes);
     const [unidadDeConversion, setUnidadDeConversion]=useState({multiploGranos:1,multiploLupulo:1})
     const [unidadOriginal, setUnidadOriginal]= useState({unidadOriginalGranos:String, unidadOriginalLupulos:String})
 
     const [conversorEngaged, setConversorEngaged]= useState(false)
+    
+    let coeficienteConversionVolumen
+    if(volumenes.newBatchSize === 0){
+      coeficienteConversionVolumen=1
+    }else{coeficienteConversionVolumen=volumenes.newBatchSize/volumenes.originalBatchSize}
+console.log(coeficienteConversionVolumen);
 
-  const volumenOriginal= granos.map( grano=>{return  grano.originalBatchSize });
-  const nuevoVolumen =granos.map( grano=>{return  grano.newBatchSize })
-  const coeficienteConversionVolumen= nuevoVolumen/volumenOriginal
+
+  /*
+  let coeficienteConversionVolumen 
+   coeficienteConversionVolumen= nuevoVolumen/volumenOriginal
+ */
 
 
  function elegirUnidades(event) {
@@ -49,23 +59,23 @@ function Granos(props) {
 
 
 
-     <h1>Original batch size:{volumenOriginal}  </h1>
+     <h1>Original batch size:{volumenes.originalBatchSize}  </h1>
 
-     <h1>Batch size:  {nuevoVolumen}</h1>
+     <h1>Batch size:  {volumenes.newBatchSize}</h1>
     
   
 <h2>Granos</h2>
      {granos.map(grano=>{
      if (grano.nombreGrano ===""){return <p></p>}
      else {return <div>
-       <div><p>Grano: {grano.nombreGrano} Cantidad grano: {grano.cantidadGrano *unidadDeConversion.multiploGranos} {unidadOriginal.unidadOriginalGranos}</p></div>     
+       <div><p>Grano: {grano.nombreGrano} Cantidad grano: {grano.cantidadGrano *unidadDeConversion.multiploGranos*coeficienteConversionVolumen} {unidadOriginal.unidadOriginalGranos}</p></div>     
      </div>
        }})}  
        <h2>Lupulos</h2>
         {granos.map(grano=>{
         if (grano.nombreLupulo ===""){return <p></p>}
         else{return <div>
-              <div><p>Lupulo: {grano.nombreLupulo} Cantidad Lupulo: {grano.cantidadLupulo *unidadDeConversion.multiploLupulo} {unidadOriginal.unidadOriginalLupulos}</p></div>     
+              <div><p>Lupulo: {grano.nombreLupulo} Cantidad Lupulo: {grano.cantidadLupulo *unidadDeConversion.multiploLupulo*coeficienteConversionVolumen} {unidadOriginal.unidadOriginalLupulos}</p></div>     
             </div>
               }})} 
 
