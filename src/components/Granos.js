@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 function Granos(props) {
     const granos = props.allGrains
     const volumenes= props.volumenes
-    console.log(volumenes);
+    
     const [unidadDeConversion, setUnidadDeConversion]=useState({multiploGranos:1,multiploLupulo:1})
     const [unidadOriginal, setUnidadOriginal]= useState({unidadOriginalGranos:String, unidadOriginalLupulos:String})
 
