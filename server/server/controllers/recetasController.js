@@ -1,3 +1,5 @@
+const recetasModel = require("../models/recetasModel");
+
 module.exports={
     getAll: function (req,res,next) {
         const recetas =[
