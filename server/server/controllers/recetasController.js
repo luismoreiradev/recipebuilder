@@ -1,17 +1,54 @@
 const recetasModel = require("../models/recetasModel");
 
 module.exports={
-    getAll: function (req,res,next) {
-        const recetas =[
-            {nombre:"receta 1",
-        grano:"grano 1",
-    cantidadGrano:100},
-    {
-       nombre:"receta 2",
-        grano:"grano 2",
-    cantidadGrano:200 
-    }
-    ]
-    res.json(recetas)
+    
+ getAll:async function (req,res,next) {
+     try{
+   const document =await recetasModel.find();
+    res.json(document)
+    } catch(e){
+            console.log(e);
+      } 
+   
+    },
+    
+    create:async function (req, res, next) {
+        try{
+ const recetas = new recetasModel({
+    titulo:req.body.titulo,
+    grano1:req.body.grano1,
+    cantidadGrano1:req.body.cantidadGrano1,
+     grano2:req.body.grano2,
+    cantidadGrano2:req.body.cantidadGrano2,
+     grano3:req.body.grano3,
+    cantidadGrano3:req.body.cantidadGrano3,
+     grano4:req.body.grano4,
+    cantidadGrano4:req.body.cantidadGrano4,
+    grano5:req.body.grano5,
+    cantidadGrano5:req.body.cantidadGrano5,
+     grano6:req.body.grano6,
+    cantidadGrano6:req.body.cantidadGrano6,
+     grano7:req.body.grano7,
+    cantidadGrano7:req.body.cantidadGrano7,
+    lupulo1:req.body.lupulo1,
+    cantidadLupulo1:req.body.cantidadLupulo1,
+    lupulo2:req.body.lupulo2,
+    cantidadLupulo2:req.body.cantidadLupulo2,
+    lupulo3:req.body.lupulo3,
+    cantidadLupulo3:req.body.cantidadLupulo3,
+    lupulo4:req.body.lupulo4,
+    cantidadLupulo4:req.body.cantidadLupulo4,
+    lupulo5:req.body.lupulo5,
+    cantidadLupulo5:req.body.cantidadLupulo5,
+    lupulo6:req.body.lupulo6,
+    cantidadLupulo6:req.body.cantidadLupulo6,
+        })
+     const document = await  recetas.save()
+     res.json(document)
+        }
+      catch(e){
+            console.log(e);
+      } 
+     
     }
 }
