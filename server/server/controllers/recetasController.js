@@ -50,5 +50,30 @@ module.exports={
             console.log(e);
       } 
      
-    }
+    },
+     getById:async function (req,res,next) {
+     try{
+   const document =await recetasModel.findById(req.params.id);
+    res.json(document)
+    } catch(e){
+            console.log(e);
+      } 
+   
+    },
+     update:async function(req, res, next) {
+        try{          
+            const document = await recetasModel.updateOne({_id:req.params.id},req.body)
+            res.json(document)
+        }catch(e){
+
+        }
+      },
+       delete: async function(req, res, next) {
+          try{
+             const document = await recetasModel.deleteOne({_id:req.params.id})
+            res.json(document)
+          }catch(e){
+            next(e)
+          }
+      }
 }
