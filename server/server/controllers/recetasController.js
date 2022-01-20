@@ -51,7 +51,7 @@ module.exports={
       catch(e){
             console.log(e);
             if(e.message){
-              res.json({status:"error", message:e.message})
+              res.json({status:"errors", message:e.message})
               return
             }
             next(e)
