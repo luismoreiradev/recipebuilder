@@ -8,6 +8,7 @@ module.exports={
     res.json(document)
     } catch(e){
             console.log(e);
+            next(e)
       } 
    
     },
@@ -42,12 +43,18 @@ module.exports={
     cantidadLupulo5:req.body.cantidadLupulo5,
     lupulo6:req.body.lupulo6,
     cantidadLupulo6:req.body.cantidadLupulo6,
+    levadura:req.body.levadura
         })
      const document = await  recetas.save()
      res.json(document)
         }
       catch(e){
             console.log(e);
+            if(e.message){
+              res.json({status:"error", message:e.message})
+              return
+            }
+            next(e)
       } 
      
     },
@@ -57,6 +64,7 @@ module.exports={
     res.json(document)
     } catch(e){
             console.log(e);
+            next(e)
       } 
    
     },
@@ -65,7 +73,7 @@ module.exports={
             const document = await recetasModel.updateOne({_id:req.params.id},req.body)
             res.json(document)
         }catch(e){
-
+              next(e)
         }
       },
        delete: async function(req, res, next) {
