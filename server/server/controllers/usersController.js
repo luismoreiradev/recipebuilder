@@ -13,6 +13,10 @@ module.exports={
             res.json(document)
         }
         catch(e){
+             if(e.message){
+              res.json({status:"errors", message:e.message})
+              return
+            }
             next(e)
         }
     }
