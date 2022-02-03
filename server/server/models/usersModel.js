@@ -19,7 +19,7 @@ validate:{
                 const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/gm;
                 return regex.test(v)
         },
-        message:"la contrasena debe tener mas de 6 caracteres, mayusculas y minusculas"
+        message:"la contrasena debe tener mas de 6 caracteres, mayusculas y minusculas."
 
     }} 
    
